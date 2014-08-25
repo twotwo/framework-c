@@ -1,8 +1,10 @@
 #include "suite_sprintf.h"
 #include "suite_sscanf.h"
+#include "build/build_info.h"
 
 #include <stdlib.h>
 #include <CUnit/Basic.h>
+#include <CUnit/Automated.h>
 #include <CUnit/Console.h>
 
 CU_SuiteInfo suites[] = {
@@ -17,6 +19,8 @@ CU_SuiteInfo suites[] = {
  */
 int main()
 {
+   showVersion();
+
    CU_pSuite pSuite = NULL;
 
    /* initialize the CUnit test registry */
@@ -29,9 +33,15 @@ int main()
       exit(EXIT_FAILURE);
    }
 
-   /* Run all tests using the CUnit Basic interface */
-   CU_basic_set_mode(CU_BRM_VERBOSE);
+   /* Basic(CU_BRM_SILENT), only show case running status */
+   CU_basic_set_mode(CU_BRM_SILENT);
    CU_basic_run_tests();
+
+   /* Automated */
+   CU_set_output_filename("build/report/CU_Report");
+   CU_list_tests_to_file();
+   CU_automated_run_tests();
+
    CU_cleanup_registry();
    return CU_get_error();
 }
