@@ -5,3 +5,6 @@ using open source frameworks to make some an application skeleton, demo for guid
   
 cunit_sample
 -----------------
+
+rpc_sample
+-----------------
