@@ -42,6 +42,9 @@ int main()
    CU_list_tests_to_file();
    CU_automated_run_tests();
 
+   /* Console mode */
+   CU_console_run_tests();
+
    CU_cleanup_registry();
    return CU_get_error();
 }
